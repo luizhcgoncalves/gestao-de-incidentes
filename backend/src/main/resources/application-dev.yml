@@ -1,0 +1,42 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/gestao_incidentes
+        username: gestao_incidentes
+        password: sf9h.EuYym4@Q!Gg3ekAThBkM_ouu4
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: false
+        properties:
+            hibernate:
+                format-sql: true
+        database: postgresql
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    mail:
+        host: localhost
+        port: 1025
+        username: gestao_incidentes
+        password: sf9h.EuYym4@Q!Gg3ekAThBkM_ouu4
+        properties:
+            mail:
+                smtp:
+                    trust: "*"
+                    auth: true
+                    starttls:
+                        enabled: true
+                    connectiontimeout: 5000
+                    timeout: 3000
+                    writetimeout: 5000
+application:
+    security:
+        jwt:
+            secret-key: 92ed63add5c5e264e64b86d9c33d462f6a05ec4da0517faabb45182d818409c4bc8ae0d2fcf38c2e1dd8f4cf9f7e22ebe59b76b8accc0e6ea9329aad8b1261b9
+            expiration: 86400000
+    mailing:
+        frontend:
+            activation-url: http://localhost:4200/activate-account?token=%s
+    file:
+        uploads:
+            photos-output-path: ./uploads
+server:
+    port: 8080

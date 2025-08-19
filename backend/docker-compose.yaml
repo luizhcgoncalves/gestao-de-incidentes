@@ -1,0 +1,44 @@
+services:
+    postgres:
+        container_name: postgres-sql-gi
+        image: postgres
+        environment:
+            POSTGRES_USER: gestao_incidentes
+            POSTGRES_PASSWORD: sf9h.EuYym4@Q!Gg3ekAThBkM_ouu4
+            PGDATA: /var/lib/postgresql/data
+            POSTGRES_DB: gestao_incidentes
+        volumes:
+            - postgres:/data/postgres
+        ports:
+            - 5432:5432
+        networks:
+            - gestao-incidentes
+        restart: unless-stopped
+    mail-dev:
+        container_name: mail-dev-gi
+        image: maildev/maildev
+        ports:
+            - 1080:1080
+            - 1025:1025
+        networks:
+            - gestao-incidentes
+    keycloak:
+        container_name: keycloak-gi
+        image: quay.io/keycloak/keycloak:26.3.2
+        ports:
+            - 9090:8080
+        environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: sf9h.EuYym4@Q!Gg3ekAThBkM_ouu4
+        networks:
+            - gestao-incidentes
+        command:
+            - "start-dev"
+
+networks:
+    gestao-incidentes:
+        driver: bridge
+
+volumes:
+    postgres:
+        driver: local
