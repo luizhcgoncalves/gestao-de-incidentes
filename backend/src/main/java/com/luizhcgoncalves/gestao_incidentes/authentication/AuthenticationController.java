@@ -25,4 +25,14 @@ public class AuthenticationController {
         return ResponseEntity.accepted().build();
     }
 
+    @PostMapping("/autenticar")
+    public ResponseEntity<AuthenticationResponse> autenticar(@RequestBody @Valid AuthenticationRequest request) {
+        return ResponseEntity.ok(authService.authenticate(request));
+    }
+
+    @GetMapping("/ativar-conta")
+    public void confirmarConta(@RequestParam String token) throws MessagingException {
+        authService.activateAccount(token);
+    }
+
 }

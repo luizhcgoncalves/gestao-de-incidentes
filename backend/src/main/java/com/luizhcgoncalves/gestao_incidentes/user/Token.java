@@ -19,6 +19,10 @@ public class Token {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
+    public Token() {
+
+    }
+
     public Token(String token, LocalDateTime createdAt, LocalDateTime expiresAt, User user) {
         this.token = token;
         this.createdAt = createdAt;
